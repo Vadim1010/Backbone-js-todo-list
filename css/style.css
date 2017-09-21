@@ -1,0 +1,86 @@
+.container{
+    padding: 5px;
+}
+
+.container__head{
+    margin-bottom: 5px;
+}
+
+.head{
+    border: 3px solid #000;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.header__select, .header__search, .header__add-friend{
+    font-size: 20px;
+    font-weight: bold;
+    border: 3px solid #000;
+    cursor: pointer;
+    background: #fff;
+}
+
+.item__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container__body{
+    margin-bottom: 5px;
+}
+
+.item__header{
+    background: #000;
+}
+
+.item__title{
+    padding: 5px;
+    margin: 0;
+    text-align: center;
+    color: #fff;
+    width: 50%;
+    border: 1px solid #fff;
+}
+
+.item__name{
+    margin: 3px 0;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item__name p {
+    width: 50%;
+    padding: 10px;
+    margin: 0;
+}
+
+.item__name:nth-child(even){
+    background: #ccc;
+}
+
+.btn-template{
+    cursor: pointer;
+    margin: 0 3px;
+    border: 1px solid #ccc;
+}
+
+.btn-template--delete, .btn-template--edit{
+    float: right;
+}
+.btn-template--delete:hover{
+    color: red;
+    border-color: red;
+}
+
+.btn-template--edit:hover{
+    color: blue;
+    border-color: blue;
+
+}
+

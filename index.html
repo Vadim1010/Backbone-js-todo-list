@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<div class="container">
+    <form class="container__head head" action="" id="filterPeople">
+        <h1 class="header__title">My Contact List</h1>
+        <select name="select" id="" class="header__select">
+            <option value="firstName">First Name</option>
+            <option value="lastName">Last Name</option>
+        </select>
+        <input type="search" placeholder="Search" class="header__search" name="search" >
+    </form>
+    <div class="container__body body" id="containerTemplate">
+        <div class="item__header">
+            <h2 class="item__title">First Name</h2>
+            <h2 class="item__title">First Name</h2>
+        </div>
+    </div>
+    <form action="" id="addFriend">
+        <input type="text" placeholder="First name" name="first-name"  class="btn-template">
+        <input type="text" placeholder="Last name" name="last-name"  class="btn-template">
+        <input type="submit" value="Add new Friend"  class="btn-template">
+    </form>
+</div>
+
+
+
+<script id="perconaTemplate" type="text/template">
+    <p> <%= firstName %> </p>
+    <p> <%= lastName %>
+        <button class="btn-template btn-template--delete" >Delete</button>
+        <button class="btn-template btn-template--edit">Edit</button>
+    </p>
+</script>
+
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/underscore/underscore-min.js"></script>
+<script src="./node_modules/backbone/backbone-min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

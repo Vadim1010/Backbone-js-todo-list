@@ -235,25 +235,6 @@ var backbone = function () {
             localStorage.setItem("data", JSON.stringify(data));
         },
 
-        addModal: function () {
-            // var data = JSON.parse(localStorage.getItem("data")),
-            //     newName , splitName;
-            //
-            // do{
-            //     newName = prompt('Write New name', 'Ivan Ivanov');
-            //     splitName = newName.split(' ');
-            //
-            //     if(splitName.length !== 2) {
-            //         alert("Invalid name");
-            //     }
-            // }while (splitName.length !== 2);
-            //
-            //
-            //
-            // localStorage.removeItem('data');
-            // localStorage.setItem("data", JSON.stringify(data));
-        },
-
         deleteModal: function () {
             var data = JSON.parse(localStorage.getItem("data"));
 

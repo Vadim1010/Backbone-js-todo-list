@@ -68,7 +68,8 @@ var backbone = function () {
         className: 'item__body',
 
         initialize: function () {
-            this.collection.on('add', this.addOne ,this)
+            this.collection.on('add', this.addOne ,this);
+            this.collection.on('reset', this.render ,this);
         },
 
         addOne: function (person) {
@@ -77,9 +78,11 @@ var backbone = function () {
         },
 
         render: function () {
+            this.$el.empty();
             this.collection.forEach(this.addOne, this);
             return this;
         }
+
     });
 
     var FilterPeople = Backbone.View.extend({
@@ -89,32 +92,46 @@ var backbone = function () {
         },
 
         events: {
-            'change': 'submit',
-            'keyup': 'submit'
+            'change': 'filter',
+            'keyup': 'filter'
         },
 
-        submit: function (e) {
+        filter: function (e) {
             e.preventDefault();
-
             var data = JSON.parse(localStorage.getItem("data")),
                 select = $(e.currentTarget).find('select').val(),
                 value = $(e.currentTarget).find('input').val().toLowerCase();
 
-            if(!value){
+
+            if (value === "" ) {
+                this.collection.reset(data.friends);
                 return;
             }
 
-            this.collection.models.forEach(function (model) {
-                var name = model.get(select).toLowerCase(),
-                number = name.indexOf(value);
+           var filter = data.friends.filter(function (elem) {
+               var name = elem[select].toLowerCase(),
+                   number = name.indexOf(value);
 
-                if(number === -1) {
-                    model.className = 'a';
-                    console.log(model)
-                }
+               if (number !== -1){
+                   return true;
+               }else {
+                   return false
+               }
 
-            })
+           });
 
+            if(filter.length === 0) {
+                this.collection.reset({
+                    name: 'No Name',
+                    firstName: 'No Name',
+                    lastName: 'No Name',
+                    id: -1
+                });
+
+                return;
+            }
+
+            this.collection.reset(filter);
         }
     });
 
@@ -167,6 +184,7 @@ var backbone = function () {
 
             $(e.currentTarget).find('input[name=last-name]').val("");
             $(e.currentTarget).find('input[name=first-name]').val("");
+
         }
 
     });
@@ -180,6 +198,8 @@ var backbone = function () {
         initialize: function() {
             this.model.on('change', this.render, this);
             this.model.on('destroy', this.remove, this);
+            this.model.on('filter', this.remove, this);
+
         },
 
         render: function() {
@@ -245,6 +265,17 @@ var backbone = function () {
                   data.splice(index, 1);
               }
           }, this);
+
+          if (data.friends.length === 0) {
+              // this.collection.render({
+              //     name: 'No Name',
+              //     firstName: 'No Name',
+              //     lastName: 'No Name',
+              //     id: -1
+              // })
+
+              console.log(this);
+          }
 
             localStorage.removeItem('data');
             localStorage.setItem("data", JSON.stringify(data));
